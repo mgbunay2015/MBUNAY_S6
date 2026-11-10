@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MBUNAY_S6.MainPage"
+             Title="MBUNAY S6">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18" VerticalOptions="Center">
+
+            <Image Source="dotnet_bot.png"
+                   HeightRequest="140"
+                   Aspect="AspectFit" />
+
+            <Label Text="Examen · CRUD con XAMPP"
+                   Style="{StaticResource Headline}"
+                   HorizontalTextAlignment="Center"
+                   SemanticProperties.HeadingLevel="Level1" />
+
+            <Label Text="Base de datos bd_israel &#10;Tabla estudiante (CODIGO, NOMBRE, EDAD, APELLIDO)"
+                   Style="{StaticResource SubHeadline}"
+                   HorizontalTextAlignment="Center"
+                   SemanticProperties.HeadingLevel="Level2" />
+
+            <Border Stroke="#B39DDB"
+                    StrokeThickness="1"
+                    StrokeShape="RoundRectangle 10"
+                    Padding="16"
+                    BackgroundColor="#F3E5F5">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="Antes de empezar"
+                           FontAttributes="Bold"
+                           TextColor="#4A148C" />
+                    <Label Text="1. Enciende Apache y MySQL en el Panel de Control de XAMPP."
+                           FontSize="12" />
+                    <Label Text="2. Verifica que exista C:\xampp\htdocs\ws_uisrael\api\estudiante.php."
+                           FontSize="12" />
+                    <Label Text="3. En Android Studio/emulador, la PC se alcanza con 10.0.2.2 (no uses localhost)."
+                           FontSize="12" />
+                </VerticalStackLayout>
+            </Border>
+
+            <Button Text="ABRIR FORMULARIO ESTUDIANTE"
+                    BackgroundColor="#6A1B9A"
+                    TextColor="White"
+                    HeightRequest="52"
+                    FontAttributes="Bold"
+                    Clicked="OnIrAlFormularioClicked" />
+
+            <Label Text="Ruta del API: /ws_uisrael/api/estudiante.php"
+                   FontSize="11"
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
