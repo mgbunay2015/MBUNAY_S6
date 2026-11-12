@@ -77,6 +77,12 @@
 	  <MauiXaml Update="Vistas\Estudiante.xaml">
 	    <Inflator>Runtime</Inflator>
 	  </MauiXaml>
+	  <Compile Update="Vistas\vNuevoEstudiante.xaml.cs">
+	    <DependentUpon>vNuevoEstudiante.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Vistas\vEditarEstudiante.xaml.cs">
+	    <DependentUpon>vEditarEstudiante.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 </Project>

@@ -4,10 +4,6 @@ using MBUNAY_S6.Modelos;
 
 namespace MBUNAY_S6.Converters;
 
-/// <summary>
-/// Convierte el JSON del Web Service PHP a <see cref="Estudiante"/>.
-/// El API envía <c>id</c> o <c>codigo</c> como clave primaria (CODIGO en MySQL).
-/// </summary>
 public sealed class EstudianteJsonConverter : JsonConverter<Estudiante>
 {
     public override Estudiante? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)

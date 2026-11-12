@@ -40,8 +40,6 @@
             </Border>
 
             <Button Text="ABRIR FORMULARIO ESTUDIANTE"
-                    BackgroundColor="#6A1B9A"
-                    TextColor="White"
                     HeightRequest="52"
                     FontAttributes="Bold"
                     Clicked="OnIrAlFormularioClicked" />

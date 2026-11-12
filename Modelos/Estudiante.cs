@@ -1,17 +1,18 @@
+using System.Text.Json.Serialization;
+
 namespace MBUNAY_S6.Modelos;
 
-  
 public class Estudiante
 {
+    [JsonPropertyName("codigo")]
     public int Codigo { get; set; }
 
+    [JsonPropertyName("nombre")]
     public string Nombre { get; set; } = string.Empty;
 
-    public int Edad { get; set; }
-
+    [JsonPropertyName("apellido")]
     public string Apellido { get; set; } = string.Empty;
 
-    public string NombreCompleto => $"{Nombre} {Apellido}".Trim();
-
-    public string Descripcion => $"{Codigo} · {NombreCompleto} ({Edad} años)";
+    [JsonPropertyName("edad")]
+    public int Edad { get; set; }
 }

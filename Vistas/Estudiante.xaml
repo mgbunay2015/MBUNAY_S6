@@ -1,5 +1,43 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="MBUNAY_S6.Vistas.Estudiante"
-             Title="Estudiante" />
+             xmlns:modelos="clr-namespace:MBUNAY_S6.Modelos"
+             x:Class="MBUNAY_S6.Vistas.EstudianteView"
+             Title="Estudiante">
+
+    <VerticalStackLayout Margin="8" Spacing="0">
+
+        <Grid ColumnDefinitions="80,*,*,60"
+              ColumnSpacing="0"
+              BackgroundColor="#FFFF00"
+              Padding="6">
+            <Label Text="Codigo" FontAttributes="Bold" />
+            <Label Grid.Column="1" Text="Nombre" FontAttributes="Bold" />
+            <Label Grid.Column="2" Text="Apellido" FontAttributes="Bold" />
+            <Label Grid.Column="3" Text="Edad" FontAttributes="Bold" />
+        </Grid>
+
+        <BoxView HeightRequest="1" Color="Black" />
+
+        <CollectionView x:Name="DatosView"
+                        SelectionMode="Single"
+                        SelectionChanged="OnItemSelected">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="modelos:Estudiante">
+                    <Grid ColumnDefinitions="80,*,*,60"
+                          ColumnSpacing="0"
+                          Padding="6">
+                        <Label Text="{Binding Codigo}" />
+                        <Label Grid.Column="1" Text="{Binding Nombre}" />
+                        <Label Grid.Column="2" Text="{Binding Apellido}" />
+                        <Label Grid.Column="3" Text="{Binding Edad}" />
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+            
+        <Button x:Name="btnagregar" Text="Agregar Estudiante" Clicked="btnagregar_Clicked" />
+
+    </VerticalStackLayout>
+
+</ContentPage>

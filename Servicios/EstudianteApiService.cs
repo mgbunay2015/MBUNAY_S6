@@ -4,10 +4,6 @@ using MBUNAY_S6.Modelos;
 
 namespace MBUNAY_S6.Servicios;
 
-/// <summary>
-/// Cliente HTTP del Web Service <c>api/estudiante.php</c>.
-/// Usa <see cref="JsonSerializerConfig"/> y <c>EstudianteJsonConverter</c> para leer/escribir JSON.
-/// </summary>
 public class EstudianteApiService
 {
     private static JsonSerializerOptions JsonOptions => JsonSerializerConfig.Opciones;

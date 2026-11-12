@@ -9,7 +9,7 @@
 
     <ShellContent
         Title="Estudiante"
-        ContentTemplate="{DataTemplate vistas:Estudiante}"
+        ContentTemplate="{DataTemplate vistas:EstudianteView}"
         Route="Estudiante" />
 
 </Shell>

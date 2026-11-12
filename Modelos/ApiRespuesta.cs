@@ -3,9 +3,6 @@ using System.Text.Json.Serialization;
 
 namespace MBUNAY_S6.Modelos;
 
-/// <summary>
-/// Sobre JSON del servicio: { "ok", "mensaje", "datos" }.
-/// </summary>
 public class ApiRespuesta
 {
     [JsonPropertyName("ok")]

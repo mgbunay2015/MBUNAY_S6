@@ -1,89 +1,22 @@
 using Microsoft.Extensions.DependencyInjection;
+using MBUNAY_S6.Modelos;
 using MBUNAY_S6.Servicios;
-using EstudianteModel = MBUNAY_S6.Modelos.Estudiante;
 
 namespace MBUNAY_S6.Vistas;
 
-public partial class Estudiante : ContentPage
+public partial class EstudianteView : ContentPage
 {
     private readonly EstudianteApiService _api;
-    private readonly CollectionView _datosView;
+    private List<Estudiante> _lista = [];
 
-    public Estudiante() : this(ObtenerServicio())
+    public EstudianteView() : this(ObtenerServicio())
     {
     }
 
-    public Estudiante(EstudianteApiService api)
+    public EstudianteView(EstudianteApiService api)
     {
         InitializeComponent();
-        _api = api;
-
-        _datosView = new CollectionView
-        {
-            ItemTemplate = new DataTemplate(() => CrearFilaGrid())
-        };
-
-        Content = new VerticalStackLayout
-        {
-            Margin = new Thickness(8),
-            Children =
-            {
-                CrearEncabezadoGrid(),
-                _datosView
-            }
-        };
-    }
-
-    private static Grid CrearEncabezadoGrid()
-    {
-        var grid = CrearGridBase();
-
-        grid.Add(new Label { Text = "Codigo", FontAttributes = FontAttributes.Bold }, 0, 0);
-        grid.Add(new Label { Text = "Nombre", FontAttributes = FontAttributes.Bold }, 1, 0);
-        grid.Add(new Label { Text = "Apellido", FontAttributes = FontAttributes.Bold }, 2, 0);
-        grid.Add(new Label { Text = "Edad", FontAttributes = FontAttributes.Bold }, 3, 0);
-
-        return grid;
-    }
-
-    private static Grid CrearFilaGrid()
-    {
-        var grid = CrearGridBase();
-
-        var codigo = new Label();
-        codigo.SetBinding(Label.TextProperty, nameof(EstudianteModel.Codigo));
-
-        var nombre = new Label();
-        nombre.SetBinding(Label.TextProperty, nameof(EstudianteModel.Nombre));
-
-        var apellido = new Label();
-        apellido.SetBinding(Label.TextProperty, nameof(EstudianteModel.Apellido));
-
-        var edad = new Label();
-        edad.SetBinding(Label.TextProperty, nameof(EstudianteModel.Edad));
-
-        grid.Add(codigo, 0, 0);
-        grid.Add(nombre, 1, 0);
-        grid.Add(apellido, 2, 0);
-        grid.Add(edad, 3, 0);
-
-        return grid;
-    }
-
-    private static Grid CrearGridBase()
-    {
-        return new Grid
-        {
-            Padding = new Thickness(0, 6),
-            ColumnSpacing = 8,
-            ColumnDefinitions =
-            {
-                new ColumnDefinition { Width = 60 },
-                new ColumnDefinition { Width = GridLength.Star },
-                new ColumnDefinition { Width = GridLength.Star },
-                new ColumnDefinition { Width = 50 },
-            }
-        };
+        _api = api; 
     }
 
     private static EstudianteApiService ObtenerServicio()
@@ -96,11 +29,53 @@ public partial class Estudiante : ContentPage
 
         try
         {
-            _datosView.ItemsSource = await _api.ListarAsync();
+            _lista = await _api.ListarAsync();
+            DatosView.ItemsSource = _lista;
         }
         catch
         {
-            _datosView.ItemsSource = new List<EstudianteModel>();
+            _lista = [];
+            DatosView.ItemsSource = _lista; 
         }
+    }
+
+    private async void btnagregar_Clicked(object? sender, EventArgs e)
+    {
+        if (Shell.Current is null)
+            return;
+
+        await Shell.Current.GoToAsync(nameof(vNuevoEstudiante));
+    }
+
+    private async void OnItemSelected(object? sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection.FirstOrDefault() is not Estudiante estudiante)
+            return;
+
+        DatosView.SelectedItem = null;
+
+        await IrEditarDesdeGridAsync(estudiante);
+    }
+
+    private async Task IrEditarDesdeGridAsync(Estudiante estudiante)
+    {
+        if (Shell.Current is null)
+            return;
+
+        int indice = _lista.FindIndex(f => f.Codigo == estudiante.Codigo);
+        if (indice < 0)
+            indice = 0;
+
+        await Shell.Current.GoToAsync(
+            nameof(vEditarEstudiante),
+            new Dictionary<string, object>
+            {
+                ["Indice"] = indice,
+                ["Codigo"] = estudiante.Codigo,
+                ["Nombre"] = estudiante.Nombre,
+                ["Apellido"] = estudiante.Apellido,
+                ["Edad"] = estudiante.Edad,
+                ["Estudiante"] = estudiante
+            });
     }
 }

@@ -1,8 +1,5 @@
 namespace MBUNAY_S6.Servicios;
 
-/// <summary>
-/// URL fija del Web Service PHP (tabla estudiante en bd_israel).
-/// </summary>
 public static class ApiSettings
 {
 #if ANDROID

@@ -24,7 +24,9 @@ namespace MBUNAY_S6
             builder.Services.AddSingleton<EstudianteApiService>();
 
             builder.Services.AddTransient<MainPage>();
-            builder.Services.AddTransient<Estudiante>();
+            builder.Services.AddTransient<EstudianteView>();
+            builder.Services.AddTransient<vNuevoEstudiante>();
+            builder.Services.AddTransient<vEditarEstudiante>();
 
             return builder.Build();
         }

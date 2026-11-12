@@ -11,7 +11,7 @@ namespace MBUNAY_S6
 
         private async void OnIrAlFormularioClicked(object? sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync(nameof(Estudiante));
+            await Shell.Current.GoToAsync(nameof(EstudianteView));
         }
     }
 }
